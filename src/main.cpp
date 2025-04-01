@@ -2,13 +2,13 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include "Instruction.h"
-#include "Processor.h"
+#include "Instruction/Instruction.h"
+#include "Processor/Processor.h"
 
-std::vector<u_char> readFileToBuffer(std::string filePath)
+std::vector<uint8_t> readFileToBuffer(std::string filePath)
 {
     std::ifstream file;
-    std::vector<u_char> fileBuffer;
+    std::vector<uint8_t> fileBuffer;
     file.open(filePath, std::ios::binary | std::ios::ate);
     if (file.is_open())
     {
@@ -25,7 +25,7 @@ std::vector<u_char> readFileToBuffer(std::string filePath)
 
 int main()
 {
-    // std::vector<u_char> const fileBuffer = readFileToBuffer("gold.rom");
+    std::vector<uint8_t> const fileBuffer = readFileToBuffer("gold.rom");
     // int index = 0;
     // std::string opcodes[16][16];
 
@@ -51,13 +51,13 @@ int main()
     //     offset += bufferTest.getSize();
     // }
 
-    Processor cpu = Processor();
+    Processor cpu = Processor(fileBuffer);
 
     uint8_t aValue = cpu.getRegister(GENERAL_REGISTER::A);
 
     printf("%#02x\n", aValue);
 
-    cpu.setRegisters(A, 0x101);
+    cpu.setRegister(A, 0x101);
     aValue = cpu.getRegister(A);
 
     printf("%#02x\n", aValue);

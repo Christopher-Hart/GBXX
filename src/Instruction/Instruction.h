@@ -20,7 +20,7 @@ class Instruction
 {
 public:
     Instruction(int, string, int, int, string);
-    Instruction(int, vector<u_char> const &);
+    Instruction(int, vector<uint8_t> const &);
     void printSelf();
     int getSize();
 

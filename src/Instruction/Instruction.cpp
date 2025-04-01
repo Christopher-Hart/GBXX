@@ -24,7 +24,7 @@ Instruction::Instruction(int opcode, string value, int size, int cycles, string 
     this->body = InstructionBody(value, size, cycles, flags);
 };
 
-Instruction::Instruction(int offset, vector<u_char> const &buffer)
+Instruction::Instruction(int offset, vector<uint8_t> const &buffer)
 {
     this->opcode = (int)buffer[offset];
     this->body = instruction_map.at(opcode);
